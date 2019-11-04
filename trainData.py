@@ -51,7 +51,8 @@ model.add(layers.Flatten())
 model.add(layers.Dense(128, activation='relu'))
 model.add(layers.Dense(3, activation='softmax'))
 # Train model
-adam = tf.train.AdamOptimizer()
+#adam = tf.train.AdamOptimizer()
+adam = tf.keras.optimizers.Adam(lr=0.001)
 model.compile(loss='categorical_crossentropy',
               optimizer=adam,
               metrics=['accuracy'])
