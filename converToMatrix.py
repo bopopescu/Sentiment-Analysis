@@ -16,6 +16,8 @@ def comment_embedding(comment):
     lencmt = len(words)
 
     for i in range(max_seq):
+        if lencmt == 0:
+            continue
         indexword = i % lencmt
         if (max_seq - i < lencmt):
             break

@@ -17,8 +17,8 @@ def acronym_text(text):
 #lay am
 #...
 
-input_file = './data/positive_data.csv'
-output_file = "./data/positive_data_output.csv"
+input_file = './data/rate0_data.csv'
+output_file = "./data/rate0_data_output.csv"
 
 def process_dataset(input_file, output_file):
     data = open(input_file,encoding="utf8").read().split('\n')

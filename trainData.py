@@ -2,11 +2,9 @@ import numpy as np
 from tensorflow.python.keras import layers
 from tensorflow import keras
 import tensorflow as tf
-from keras.preprocessing import sequence
 import converToMatrix as ctm
 from tqdm import tqdm
 import word2vec as wc
-from gensim.models import Word2Vec
 
 sequence_length = 200
 embedding_size = 128
@@ -42,6 +40,7 @@ y_train = np.array(label_data)
 
 # Define model
 model = keras.Sequential()
+#model = keras.optimizers.Adam(lr=0.001)
 model.add(layers.Convolution2D(num_filters, (filter_sizes, embedding_size),
                         padding='valid',
                         input_shape=(sequence_length, embedding_size, 1), activation='relu'))
@@ -57,7 +56,7 @@ model.compile(loss='categorical_crossentropy',
               optimizer=adam,
               metrics=['accuracy'])
 print(model.summary())
-
-model.fit(x = x_train[:7000], y = y_train[:7000], batch_size = batch_size, verbose=1, epochs=epochs, validation_data=(x_train[:3000], y_train[:3000]))
+#9725 label => train 70%, validation 30%
+model.fit(x = x_train[:7000], y = y_train[:7000], batch_size = batch_size, verbose=1, epochs=epochs, validation_data=(x_train[:2725], y_train[:2725]))
 
 model.save('models.h5')
