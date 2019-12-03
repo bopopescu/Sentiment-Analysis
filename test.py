@@ -7,12 +7,12 @@ import tensorflow as tf
 
 
 # model_sentiment = keras.models.load_model('./models.h5')
-model_sentiment = tf.keras.models.load_model('./models.h5')
+model_sentiment = tf.keras.models.load_model('./models.h5', compile=False)
 
 # Show the model architecture
 model_sentiment.summary()
 
-text = "menu mới giá không đổi"
+text = "quán này ngày_càng ngon"
 text = pr.pre_process(text)
 print(text)
 #

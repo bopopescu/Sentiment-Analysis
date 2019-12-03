@@ -1,5 +1,6 @@
 import numpy as np
-from tensorflow.python.keras import layers
+# from tensorflow.python.keras import layers
+# from tensorflow.keras import layers
 from tensorflow import keras
 import tensorflow as tf
 import converToMatrix as ctm
@@ -41,14 +42,14 @@ y_train = np.array(label_data)
 # Define model
 model = keras.Sequential()
 #model = keras.optimizers.Adam(lr=0.001)
-model.add(layers.Convolution2D(num_filters, (filter_sizes, embedding_size),
+model.add(tf.keras.layers.Convolution2D(num_filters, (filter_sizes, embedding_size),
                         padding='valid',
                         input_shape=(sequence_length, embedding_size, 1), activation='relu'))
-model.add(layers.MaxPooling2D(pool_size=(198, 1)))
-model.add(layers.Dropout(dropout_rate))
-model.add(layers.Flatten())
-model.add(layers.Dense(128, activation='relu'))
-model.add(layers.Dense(3, activation='softmax'))
+model.add(tf.keras.layers.MaxPooling2D(pool_size=(198, 1)))
+model.add(tf.keras.layers.Dropout(dropout_rate))
+model.add(tf.keras.layers.Flatten())
+model.add(tf.keras.layers.Dense(128, activation='relu'))
+model.add(tf.keras.layers.Dense(3, activation='softmax'))
 # Train model
 #adam = tf.train.AdamOptimizer()
 adam = tf.keras.optimizers.Adam(lr=0.001)
@@ -57,6 +58,6 @@ model.compile(loss='categorical_crossentropy',
               metrics=['accuracy'])
 print(model.summary())
 #9725 label => train 70%, validation 30%
-model.fit(x = x_train[:7000], y = y_train[:7000], batch_size = batch_size, verbose=1, epochs=epochs, validation_data=(x_train[:2725], y_train[:2725]))
+model.fit(x = x_train[:7000], y = y_train[:7000], batch_size = batch_size, verbose=1, epochs=epochs, validation_data=(x_train[:3000], y_train[:3000]))
 
 model.save('models.h5')

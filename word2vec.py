@@ -18,6 +18,7 @@ def readdata(path):
 reviews, label = readdata(path)
 input_gensim = []
 for review in reviews:
+    print(review)
     input_gensim.append(review.split())
 
 model = Word2Vec(input_gensim, size=128, window=5, min_count=0, workers=4, sg=1)
